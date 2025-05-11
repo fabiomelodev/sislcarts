@@ -53,6 +53,25 @@
                                     value="{{ $service->name }}" />
                                 </div>
 
+                                <div class="w-full flex flex-col gap-1">
+
+                                    <label
+                                    class="text-sm font-medium"
+                                    for="status">
+                                        Status:
+                                    </label>
+
+                                    <select
+                                    class="input-field"
+                                    name="status"
+                                    value="{{ $service->status }}"
+                                    required>
+                                        <option>Selecione</option>
+                                        <option value="inativo">Inativo</option>
+                                        <option value="ativo">Ativo</option>
+                                    </select>
+                                </div>
+
                                 <div class="w-full flex justify-center">
                                     <button
                                     class="shadow-lg rounded-lg text-sm font-bold text-center text-white bg-purple-400 hover:bg-purple-500 py-2 px-4"

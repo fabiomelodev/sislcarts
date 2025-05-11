@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Enums\Status;
+use Illuminate\Validation\Rules\Enum;
 
 class ServiceController extends Controller
 {
@@ -34,6 +36,7 @@ class ServiceController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'status' => ['required', new Enum(Status::class)]
         ]);
 
         $service = Service::create($data);
