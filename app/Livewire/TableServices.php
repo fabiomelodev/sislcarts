@@ -19,6 +19,7 @@ class TableServices extends Table
     {
         return [
             'Nome',
+            'Status',
             'Criado em'
         ];
     }

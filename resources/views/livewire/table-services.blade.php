@@ -46,6 +46,10 @@
                             </td>
 
                             <td>
+                                <x-table.status-column :name="$collection->status" />
+                            </td>
+
+                            <td>
                                 {{ $collection->created_at->format('d/m/Y') }}
                             </td>
 

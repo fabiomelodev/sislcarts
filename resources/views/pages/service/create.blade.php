@@ -44,7 +44,26 @@
                                     <input
                                     class="input-field"
                                     type="text"
-                                    name="name" />
+                                    name="name"
+                                    id="name" />
+                                </div>
+
+                                <div class="w-full flex flex-col gap-1">
+
+                                    <label
+                                    class="text-sm font-medium"
+                                    for="status">
+                                        Status:
+                                    </label>
+
+                                    <select
+                                    class="input-field"
+                                    name="status"
+                                    required>
+                                        <option>Selecione</option>
+                                        <option value="inativo">Inativo</option>
+                                        <option value="ativo">Ativo</option>
+                                    </select>
                                 </div>
 
                                 <div class="w-full flex justify-center">

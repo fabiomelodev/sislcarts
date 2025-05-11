@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
+            $table->enum('status', ['ativo', 'inativo'])->default('ativo');
             $table->timestamps();
         });
     }
