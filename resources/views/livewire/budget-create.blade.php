@@ -163,39 +163,29 @@
                                     </select>
                                 </div>
 
-                                @if($type_budget == 'Valor fechado')
+                                @if($type_budget != '')
                                     <div class="w-full">
                                         <label
                                         class="label-field"
                                         for="value">
-                                            Valor fechado (Mão de obra):
+                                            Valor:
                                         </label>
 
-                                        <input
-                                        class="input-field"
-                                        type="value"
-                                        wire:model="value"
-                                        id="value" />
+                                        <div class="rounded-lg overflow-hidden relative">
+                                            <span class="w-8 h-full top-0 left-0 absolute flex justify-center items-center text-xs font-semibold text-white bg-gray-800">
+                                                R$
+                                            </span>
+
+                                            <input
+                                            class="input-field input-field-value"
+                                            type="value"
+                                            wire:model.live="value"
+                                            id="value" />
+                                        </div>
                                     </div>
                                 @endif
 
-                                @if($type_budget == 'Por hora')
-                                    <div class="w-full">
-                                        <label
-                                        class="label-field"
-                                        for="per_hour">
-                                            Por hora:
-                                        </label>
-
-                                        <input
-                                        class="input-field"
-                                        type="per_hour"
-                                        wire:model="per_hour"
-                                        id="per_hour" />
-                                    </div>
-                                @endif
-
-                                @if($value != '' || $per_hour != '')
+                                @if($value != '')
                                     <div class="w-full">
                                         <label
                                         class="label-field"
@@ -224,7 +214,7 @@
 
                                         <select
                                         class="input-field"
-                                        wire:model="frame_type"
+                                        wire:model.live="frame_type"
                                         id="frame_type">
                                             <option value="0">Selecione</option>
                                             <option value="Madeira">Madeira</option>
@@ -233,7 +223,7 @@
                                     </div>
                                 @endif
 
-                                @if($service_type == 'Bastidor')
+                                @if($frame_type != '')
                                     <div class="w-full">
                                         <label
                                         class="label-field"
@@ -251,7 +241,7 @@
                                             <label
                                             class="label-field"
                                             for="frame_size_16">
-                                                16
+                                                16cm
                                             </label>
                                         </div>
 
@@ -265,7 +255,7 @@
                                             <label
                                             class="label-field"
                                             for="frame_size_18">
-                                                18
+                                                18cm
                                             </label>
                                         </div>
 
@@ -279,7 +269,7 @@
                                             <label
                                             class="label-field"
                                             for="frame_size_20">
-                                                20
+                                                20cm
                                             </label>
                                         </div>
 
@@ -293,12 +283,13 @@
                                             <label
                                             class="label-field"
                                             for="frame_size_22">
-                                                22
+                                                22cm
                                             </label>
                                         </div>
                                     </div>
                                 @endif
-                                <div class="w-full">
+
+                                {{-- <div class="w-full">
                                     <label
                                     class="label-field"
                                     for="qtde_line">
@@ -310,9 +301,9 @@
                                     type="number"
                                     name="qtde_line"
                                     id="qtde_line" />
-                                </div>
+                                </div> --}}
 
-                                @if($service_type == 'Bastidor')
+                                @if($frame_type != '')
                                     <div class="w-full">
                                         <label class="label-field">
                                             Tamanho do pano:

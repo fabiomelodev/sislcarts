@@ -69,7 +69,7 @@ class BudgetCreate extends Component
 
     public function validateStepFirst()
     {
-        if (Customer::find($this->customer_id)->exists()) {
+        if (!empty(Customer::find($this->customer_id))) {
             $customer = Customer::find($this->customer_id);
 
             $this->phone = $customer->phone;

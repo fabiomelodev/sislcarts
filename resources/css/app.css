@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+}
 @layer components {
     .button-action {
         @apply border border-purple-600 shadow-lg rounded-lg flex items-center gap-2 text-sm font-medium text-center capitalize text-purple-600 bg-white py-6 px-4;
@@ -22,6 +27,26 @@
 
     .button-action:hover .button-action-icon,
     .button-action.is-active .button-action-icon {
+        @apply fill-white;
+    }
+
+    .button-order {
+        @apply w-8 h-8 border shadow-lg rounded-lg flex justify-center items-center bg-white cursor-pointer;
+    }
+
+    .button-order:hover {
+        @apply scale-90 transition;
+    }
+
+    .button-order.is-active {
+        @apply bg-purple-800;
+    }
+
+    .button-order-icon {
+        @apply w-4 h-4;
+    }
+
+    .button-order.is-active .button-order-icon {
         @apply fill-white;
     }
 
@@ -119,6 +144,27 @@
 
     .input-field {
         @apply w-full border border-purple-400 rounded-lg block text-sm font-medium py-2 px-4;
+    }
+
+    .input-field-value {
+        @apply pl-12;
+    }
+
+    .tab-link {
+        @apply border-2 border-purple-800 shadow-lg rounded-lg overflow-hidden relative block text-sm font-medium text-center text-purple-800 py-2;
+    }
+
+    .tab-link:hover {
+        @apply text-white;
+    }
+
+    .tab-link::before {
+        content: '';
+        @apply w-full h-full top-0 left-0 -translate-x-full transition duration-500 absolute bg-purple-800 z-10;
+    }
+
+    .tab-link:hover::before {
+        @apply translate-x-0;
     }
 
     .table-container {

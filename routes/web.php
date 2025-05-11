@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductFeatureController;
+use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.dashboard');
+});
+
+Route::get('login', function () {
+    return view('pages.login');
 });
 
 Route::get('orcamentos', [BudgetController::class, 'index'])->name('budget.index');
@@ -53,3 +60,33 @@ Route::post('servico/criar', [ServiceController::class, 'store'])->name('service
 Route::get('servico/{service:id}/editar', [ServiceController::class, 'edit'])->name('service.edit');
 
 Route::put('servico/{service:id}/atualizar', [ServiceController::class, 'update'])->name('service.update');
+
+Route::get('estoques', [StockController::class, 'index'])->name('stock.index');
+
+Route::get('estoque/criar', [StockController::class, 'create'])->name('stock.create');
+
+Route::post('estoque/criar', [StockController::class, 'store'])->name('stock.store');
+
+Route::get('estoque/{stock:id}/editar', [StockController::class, 'edit'])->name('stock.edit');
+
+Route::put('estoque/{stock:id}/atualizar', [StockController::class, 'update'])->name('stock.update');
+
+Route::get('tipos-produtos', [ProductTypeController::class, 'index'])->name('product-type.index');
+
+Route::get('tipo-produto/criar', [ProductTypeController::class, 'create'])->name('product-type.create');
+
+Route::post('tipo-produto/criar', [ProductTypeController::class, 'store'])->name('product-type.store');
+
+Route::get('tipo-produto/{productType:id}/editar', [ProductTypeController::class, 'edit'])->name('product-type.edit');
+
+Route::put('tipo-produto/{productType:id}/atualizar', [ProductTypeController::class, 'update'])->name('product-type.update');
+
+Route::get('produtos-caracteristicas', [ProductFeatureController::class, 'index'])->name('product-feature.index');
+
+Route::get('produto-caracteristica/criar', [ProductFeatureController::class, 'create'])->name('product-feature.create');
+
+Route::post('produto-caracteristica/criar', [ProductFeatureController::class, 'store'])->name('product-feature.store');
+
+Route::get('produto-caracteristica/{productType:id}/editar', [ProductFeatureController::class, 'edit'])->name('product-feature.edit');
+
+Route::put('produto-caracteristica/{productType:id}/atualizar', [ProductFeatureController::class, 'update'])->name('product-feature.update');

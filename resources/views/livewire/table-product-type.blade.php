@@ -6,7 +6,6 @@
             class="h-8 border shadow-lg rounded-lg text-xs font-medium py-1 px-4"
             wire:model.live="orderColumn">
                 <option value="created_at">Criado em</option>
-                <option value="value">Valor</option>
             </select>
 
             <div class="flex gap-2">
@@ -42,15 +41,7 @@
                     @forelse ($collections as $collection)
                         <tr wire:key="budget-{{ $collection->id }}">
                             <td>
-                                {{ $collection->customer->name }}
-                            </td>
-
-                            <td>
-                                {{ $collection->service_type }}
-                            </td>
-
-                            <td>
-                                {{ $collection->value }}
+                                {{ $collection->name }}
                             </td>
 
                             <td>
@@ -58,7 +49,7 @@
                             </td>
 
                             <td class="flex justify-end gap-4">
-                                <x-table.button-edit :record="$collection" route="budget.edit" />
+                                <x-table.button-edit :record="$collection" route="product-type.edit" />
 
                                 <livewire:button-delete :record="$collection" :key="$collection->id"/>
                             </td>

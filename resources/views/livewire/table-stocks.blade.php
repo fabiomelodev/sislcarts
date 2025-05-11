@@ -42,11 +42,7 @@
                     @forelse ($collections as $collection)
                         <tr wire:key="budget-{{ $collection->id }}">
                             <td>
-                                {{ $collection->customer->name }}
-                            </td>
-
-                            <td>
-                                {{ $collection->service_type }}
+                                {{ $collection->name }}
                             </td>
 
                             <td>
@@ -58,7 +54,7 @@
                             </td>
 
                             <td class="flex justify-end gap-4">
-                                <x-table.button-edit :record="$collection" route="budget.edit" />
+                                <x-table.button-edit :record="$collection" route="stock.edit" />
 
                                 <livewire:button-delete :record="$collection" :key="$collection->id"/>
                             </td>
