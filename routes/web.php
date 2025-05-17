@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductFeatureController;
@@ -19,13 +20,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard');
+    })->name('dashboard');
 });
 
-Route::get('login', function () {
-    return view('pages.login');
-});
+Route::get('login', [AuthController::class, 'index'])->name('login.index');
+
+Route::post('/login', [AuthController::class, 'auth'])->name('login.auth');
+
+Route::get('/registrar', [AuthController::class, 'create'])->name('login.create');
+
+Route::post('/registrar', [AuthController::class, 'register'])->name('login.register');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('orcamentos', [BudgetController::class, 'index'])->name('budget.index');
 

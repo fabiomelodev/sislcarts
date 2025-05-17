@@ -1,6 +1,10 @@
 <x-layout.base>
     <x-slot name="title">Home</x-slot>
 
+    @if(session('success'))
+        <x-notifications.success message="{{ session('success') }}"/>
+    @endif
+
     <section class="w-full h-screen flex justify-center items-center bg-red-500 py-6">
 
         <div class="container h-full flex justify-center items-center">

@@ -8,6 +8,10 @@
     }
 }
 @layer components {
+    .btn-submit {
+        @apply w-full shadow-lg rounded-lg block text-sm font-bold text-center text-white bg-purple-600 hover:bg-purple-700 cursor-pointer py-2 px-6;
+    }
+
     .button-action {
         @apply border border-purple-600 shadow-lg rounded-lg flex items-center gap-2 text-sm font-medium text-center capitalize text-purple-600 bg-white py-6 px-4;
     }

@@ -39,10 +39,16 @@
         </style>
         @livewireStyles
     </head>
-    <body>
-        <x-layout.header />
-            {{ $slot }}
-        <x-layout.footer />
+    <body class="overflow-x-hidden">
+        @auth
+            <x-layout.header />
+        @endauth
+
+        {{ $slot }}
+
+        @auth
+            <x-layout.footer />
+        @endauth
 
         @vite(['resources/js/app.js'])
         @livewireScripts
