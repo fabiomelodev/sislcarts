@@ -150,6 +150,46 @@
         @apply pl-12;
     }
 
+    .select-field {
+        @apply relative flex flex-col gap-1;
+    }
+
+    .select-field-label {
+        @apply text-sm font-medium;
+    }
+
+    .select-field-wrapper {
+        @apply w-full border border-purple-400 rounded-lg relative block bg-white cursor-pointer py-2 px-4;
+    }
+
+    .select-field-icon-wrapper {
+        @apply w-8 h-full top-0 right-0 transition duration-500 absolute flex flex-col justify-center items-center gap-2 p-2;
+    }
+
+    .select-field-icon {
+        @apply w-full h-1 rounded bg-purple-500/50;
+    }
+
+    .select-field-icon.is-active {
+        @apply bg-purple-500;
+    }
+
+    .select-field-value {
+        @apply text-sm font-medium capitalize;
+    }
+
+    .select-field-items {
+        @apply w-full top-full left-0 translate-y-2 border border-purple-400 rounded-lg absolute bg-white p-2;
+    }
+
+    .select-field-item {
+        @apply border-b last:border-0 hover:bg-gray-200 cursor-pointer py-1 px-2;
+    }
+
+    .select-field-item-title {
+        @apply text-sm font-normal capitalize;
+    }
+
     .tab-link {
         @apply border-2 border-purple-800 shadow-lg rounded-lg overflow-hidden relative block text-sm font-medium text-center text-purple-800 py-2;
     }

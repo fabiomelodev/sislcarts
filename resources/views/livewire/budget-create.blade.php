@@ -198,8 +198,9 @@
                                         wire:model.live="service_type"
                                         id="service_type">
                                             <option value="0">Selecione</option>
-                                            <option value="Bastidor">Bastidor</option>
-                                            <option value="Crochê">Crochê</option>
+                                            @foreach($this->getServices() as $service)
+                                                <option value="{{ $service->name }}">{{ $service->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 @endif
@@ -221,9 +222,7 @@
                                             <option value="Plástico">Plástico</option>
                                         </select>
                                     </div>
-                                @endif
 
-                                @if($frame_type != '')
                                     <div class="w-full">
                                         <label
                                         class="label-field"

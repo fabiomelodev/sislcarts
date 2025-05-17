@@ -23,6 +23,14 @@ class Service extends Model
         'status' => Status::class,
     ];
 
+    public static function statusList()
+    {
+        return [
+            self::ACTIVE => 'Ativo',
+            self::INACTIVE => 'Inativo',
+        ];
+    }
+
     protected static function booted(): void
     {
         static::creating(function ($model) {
@@ -32,6 +40,16 @@ class Service extends Model
         static::updating(function ($model) {
             $model->slug = Str::slug($model->name);
         });
+    }
+
+    public function scopeActives($query)
+    {
+        return $query->where('status', Status::Active);
+    }
+
+    public function scopeInactives($query)
+    {
+        return $query->where('status', Status::Inactive);
     }
 
     public function user(): BelongsTo

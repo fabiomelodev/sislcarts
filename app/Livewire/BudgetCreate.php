@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Budget;
 use App\Models\Customer;
+use App\Models\Service;
 use Livewire\Component;
 
 class BudgetCreate extends Component
@@ -94,6 +95,19 @@ class BudgetCreate extends Component
         $this->validate($this->rules());
 
         $this->stepCurrent = 2;
+    }
+
+    public function getServices()
+    {
+        return Service::actives()->get();
+    }
+
+    public function getContactTypes(): array
+    {
+        return [
+            'whatsapp'     => 'Whatsapp',
+            'recomendacao' => 'Recomendação'
+        ];
     }
 
     public function validateStepSecond()

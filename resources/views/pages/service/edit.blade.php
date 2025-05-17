@@ -54,22 +54,7 @@
                                 </div>
 
                                 <div class="w-full flex flex-col gap-1">
-
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="status">
-                                        Status:
-                                    </label>
-
-                                    <select
-                                    class="input-field"
-                                    name="status"
-                                    value="{{ $service->status }}"
-                                    required>
-                                        <option>Selecione</option>
-                                        <option value="inativo">Inativo</option>
-                                        <option value="ativo">Ativo</option>
-                                    </select>
+                                    <livewire:form.select-field name="status" :options="\App\Enums\Status::values()" value="{{ $service->status }}" />
                                 </div>
 
                                 <div class="w-full flex justify-center">
