@@ -17,6 +17,7 @@ class CustomerSeeder extends Seeder
             'name'         => 'Cacau',
             'phone'        => '119999999',
             'contact_type' => 'whatsapp',
+            'user_id'      => 1,
             'created_at'   => date('Y-m-d H:i:s'),
             'updated_at'   => date('Y-m-d H:i:s'),
         ]);
@@ -25,6 +26,7 @@ class CustomerSeeder extends Seeder
             'name'         => 'Toddinho',
             'phone'        => '1199999123',
             'contact_type' => 'whatsapp',
+            'user_id'      => 1,
             'created_at'   => date('Y-m-d H:i:s'),
             'updated_at'   => date('Y-m-d H:i:s'),
         ]);

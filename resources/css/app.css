@@ -154,8 +154,20 @@
         @apply pl-12;
     }
 
+    .photo-label {
+        @apply w-full border-2 border-dashed border-gray-800 rounded-lg flex gap-2 justify-center items-center font-bold text-gray-800 hover:text-white hover:bg-gray-800 cursor-pointer py-6;
+    }
+
+    .photo-preview {
+        @apply w-24 h-24 border-2 border-gray-800 rounded-full relative bg-gray-100 p-1;
+    }
+
+    .photo-preview-edit {
+        @apply w-8 h-8 bottom-0 -right-1 shadow-lg rounded-full absolute flex justify-center items-center bg-gray-800 hover:bg-gray-700 cursor-pointer p-1;
+    }
+
     .select-field {
-        @apply relative flex flex-col gap-1;
+        @apply relative flex flex-col gap-1 z-10;
     }
 
     .select-field-label {

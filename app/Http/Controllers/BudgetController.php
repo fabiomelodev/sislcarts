@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Budget;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BudgetController extends Controller
 {
@@ -12,7 +14,7 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        $budgets = Budget::all();
+        $budgets = Budget::where('user_id', Auth::user()->id)->get();
 
         return view('pages.budget.index', [
             'budgets' => $budgets
@@ -48,6 +50,8 @@ class BudgetController extends Controller
      */
     public function edit(Budget $budget)
     {
+        $services = Service::where('user_id', Auth::user()->id)->pluck('name', 'id')->toArray();
+
         $notification = [
             'message' => 'Criado com sucesso!',
             'show'    => true
@@ -55,6 +59,7 @@ class BudgetController extends Controller
 
         return view('pages.budget.edit', [
             'budget'       => $budget,
+            'services'     => $services,
             'notification' => $notification
         ]);
     }

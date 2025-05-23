@@ -1,11 +1,13 @@
 <div
 class="select-field"
-x-data="{ openOptions: false }">
-    <p class="select-field-label">
-        Status:
-    </p>
+x-data="{ openOptions: false}">
+    @if($label)
+        <p class="select-field-label">
+            {{ $label }}:
+        </p>
+    @endif
 
-    <input type="hidden" name="{{ $name }}" value="{{ $value }}" />
+    <input type="hidden" name="{{ $name }}" />
 
     <div
     class="select-field-wrapper"
@@ -34,7 +36,11 @@ x-data="{ openOptions: false }">
             <div
             class="select-field-item"
             x-on:click="openOptions = false"
-            wire:click="setValue('{{ $key }}')">
+            @if(isset($event))
+                wire:click="handleClick('{{ $key}}', '{{ $event}}')"
+            @else
+                wire:click="setValue('{{ $key }}')"
+            @endif>
                 <p class="select-field-item-title">
                     {{ $option }}
                 </p>

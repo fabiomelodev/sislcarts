@@ -5,7 +5,9 @@ namespace App\Livewire;
 use App\Models\Budget;
 use App\Models\Customer;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class BudgetCreate extends Component
 {
@@ -13,15 +15,13 @@ class BudgetCreate extends Component
 
     public bool $showCreateNewCustomers = false;
 
-    public $customers;
-
     public string $customer_id = '';
-
-    public string $phone = '';
 
     public string $name = '';
 
-    public string $contact_type = '';
+    public string $phone = '';
+
+    public string $contactType = '';
 
     public bool $notFindCustomer = false;
 
@@ -31,24 +31,25 @@ class BudgetCreate extends Component
 
     public Customer $customer;
 
-    public string $type_budget = '';
+    public string $budgetType = '';
 
     public string $value = '';
 
-    public string $per_hour = '';
+    public Service $service;
 
-    public string $service_type = '';
-
-    public string $frame_type = '';
-
-    public string $frame_size = '';
+    protected $listeners = [
+        'setCustomer',
+        'setContactTypes',
+        'setBudgetType',
+        'setService'
+    ];
 
     protected $messages = [
         'phone.required'        => 'O Telefone é obrigatório.',
         'name.required'         => 'O nome é obrigatório.',
-        'contact_type.required' => 'A tipo de contato é obrigatório.',
-        'type_budget.required' => 'A tipo de orçamento é obrigatório.',
-        'service_type.required' => 'A tipo de serviço é obrigatório.',
+        'contactType.required'  => 'A tipo de contato é obrigatório.',
+        'budget_type.required'  => 'A tipo de orçamento é obrigatório.',
+        'service_id.required'   => 'A tipo de serviço é obrigatório.',
     ];
 
     public function showFields($buttonType)
@@ -63,31 +64,88 @@ class BudgetCreate extends Component
             $this->showExistingCustomers = true;
 
             $this->showCreateNewCustomers = false;
-
-            $this->customers = Customer::orderBy('name', 'ASC')->get();
         }
+    }
+
+    #[On('setCustomer')]
+    public function setCustomer($customer_id)
+    {
+        $this->customer_id = $customer_id;
+
+        $this->customer = Customer::where('user_id', Auth::user()->id)
+            ->find($customer_id);
+    }
+
+    public function getCustomers(): array
+    {
+        return Customer::where('user_id', Auth::user()->id)
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    #[On('setContactType')]
+    public function setContactType($contactType)
+    {
+        $this->contactType = $contactType;
+    }
+
+    public function getContactTypes(): array
+    {
+        return [
+            0 => 'Whatsapp',
+            1 => 'Recomendação'
+        ];
+    }
+
+    #[On('setService')]
+    public function setService($serviceId)
+    {
+        $this->service = Service::where('user_id', Auth::user()->id)->find($serviceId);
+    }
+
+    public function getServices(): array
+    {
+        return Service::actives()
+            ->where('user_id', Auth::user()->id)
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    public function getBudgetTypes(): array
+    {
+        return [
+            0 => 'Valor fechado',
+            1 => 'Por hora'
+        ];
+    }
+
+    #[On('setBudgetType')]
+    public function setBudgetType($budgetType)
+    {
+        $this->budgetType = $budgetType;
     }
 
     public function validateStepFirst()
     {
         if (!empty(Customer::find($this->customer_id))) {
-            $customer = Customer::find($this->customer_id);
+            $this->customer = Customer::find($this->customer_id);
 
-            $this->phone = $customer->phone;
+            $this->phone = $this->customer->phone;
 
-            $this->name = $customer->name;
+            $this->name = $this->customer->name;
 
-            $this->contact_type = $customer->contact_type;
+            $this->contactType = $this->customer->contact_type;
         }
 
         if ($this->showCreateNewCustomers) {
             if (Customer::where('phone', $this->phone)->exists()) {
                 $this->customer = Customer::where('phone', $this->phone)->first();
             } else {
-                $customer = Customer::create([
+                $this->customer = Customer::create([
                     'name'         => $this->name,
                     'phone'        => $this->phone,
-                    'contact_type' => $this->contact_type
+                    'contact_type' => $this->contactType,
+                    'user_id'      => Auth::user()->id
                 ]);
             }
         }
@@ -97,28 +155,12 @@ class BudgetCreate extends Component
         $this->stepCurrent = 2;
     }
 
-    public function getServices()
-    {
-        return Service::actives()->get();
-    }
-
-    public function getContactTypes(): array
-    {
-        return [
-            'whatsapp'     => 'Whatsapp',
-            'recomendacao' => 'Recomendação'
-        ];
-    }
-
     public function validateStepSecond()
     {
         if (
-            $this->type_budget != ''
-            && $this->service_type != ''
-            || $this->value != ''
-            || $this->per_hour != ''
-            && $this->frame_type != ''
-            && $this->frame_size != ''
+            $this->budgetType != ''
+            && isset($this->service)
+            && $this->value != ''
         ) {
             $this->stepCurrent = 3;
 
@@ -132,10 +174,6 @@ class BudgetCreate extends Component
     {
         if ($this->stepCurrent != 1) {
             $this->stepCurrent--;
-
-            // $this->validateFields = false;
-
-            // $this->notFindCustomer = false;
         }
     }
 
@@ -153,13 +191,11 @@ class BudgetCreate extends Component
     public function save()
     {
         $budget = Budget::create([
-            'type_budget'  => $this->type_budget,
+            'budget_type'  => $this->budgetType,
             'value'        => $this->value,
-            'per_hour'     => $this->per_hour,
-            'service_type' => $this->service_type,
-            'frame_type'   => $this->frame_type,
-            'frame_size'   => $this->frame_size,
-            'customer_id'  => $this->customer->id
+            'service_id'   => $this->service->id,
+            'customer_id'  => $this->customer->id,
+            'user_id'      => Auth::user()->id
         ]);
 
         redirect(route('budget.edit', [
@@ -175,22 +211,21 @@ class BudgetCreate extends Component
             $rules = [
                 'name'         => 'required',
                 'phone'        => 'required',
-                'contact_type' => 'required'
+                'contactType'  => 'required'
             ];
         } elseif ($this->stepCurrent == 2) {
-            if ($this->type_budget == 'Valor fechado') {
+            if ($this->budgetType == 'Valor fechado') {
                 $rules = [
-                    'type_budget'  => 'required',
-                    'service_type' => 'required',
+                    'budget_type'  => 'required',
+                    'service'      => 'required',
                     'value'        => 'required'
                 ];
             }
 
-            if ($this->type_budget == 'Por hora') {
+            if ($this->budgetType == 'Por hora') {
                 $rules = [
-                    'type_budget'  => 'required',
-                    'service_type' => 'required',
-                    'per_hour'     => 'required'
+                    'budget_type'  => 'required',
+                    'service'      => 'required',
                 ];
             }
         }

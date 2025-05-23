@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class SelectField extends Component
 {
+    public string $label;
+
     public array $options;
 
     public string $name;
@@ -14,12 +16,24 @@ class SelectField extends Component
 
     public string $current = 'Selecione';
 
-    public function mount(array $options, $value = null)
+    public string $event;
+
+    public function mount($label = null, array $options, $value = null, $event = null)
     {
+        if ($label) {
+            $this->label = $label;
+        }
+
         $this->options = $options;
 
         if ($value) {
             $this->value = $value;
+
+            $this->current = $this->options[$value];
+        }
+
+        if ($event) {
+            $this->event = $event;
         }
     }
 
@@ -30,6 +44,13 @@ class SelectField extends Component
         $this->value = $value;
 
         $this->current = $this->options[$index];
+    }
+
+    public function handleClick(string $key, string $event)
+    {
+        $this->setValue($key);
+
+        $this->dispatch($event, $key);
     }
 
     public function render()

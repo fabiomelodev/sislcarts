@@ -31,7 +31,11 @@
                         <form action="{{ route('customer.store') }}" method="POST">
                             @csrf
 
-                            <div class="flex flex-wrap gap-4">
+                            <div class="flex flex-wrap gap-4 justify-center">
+
+                                <div class="w-4/12 flex justify-center">
+                                    <livewire:photo-input-field />
+                                </div>
 
                                 <div class="w-full flex flex-col gap-1">
 
