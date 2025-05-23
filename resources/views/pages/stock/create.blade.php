@@ -1,7 +1,7 @@
 <x-layout.base>
     <x-slot name="title">Estoques</x-slot>
 
-    <section class="relative pt-14">
+    <section class="pt-14">
 
         <div class="container flex justify-center">
 
@@ -34,37 +34,19 @@
                             <div class="flex flex-wrap gap-4">
 
                                 <div class="w-full flex flex-col gap-1">
+                                    <x-input-field label="Nome" name="name" />
+                                </div>
 
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="name">
-                                        Nome:
-                                    </label>
-
-                                    <input
-                                    class="input-field"
-                                    type="text"
-                                    name="name" />
+                                <div class="w-full flex flex-col gap-1">
+                                    <x-input-field label="Marca" name="brand" />
                                 </div>
 
                                 <div class="w-full">
-                                    <label
-                                    class="label-field"
-                                    for="value">
-                                        Valor:
-                                    </label>
+                                    <x-input-field label="Valor" name="value" prefix="R$" />
+                                </div>
 
-                                    <div class="rounded-lg overflow-hidden relative">
-                                        <span class="w-8 h-full top-0 left-0 absolute flex justify-center items-center text-xs font-semibold text-white bg-gray-800">
-                                            R$
-                                        </span>
-
-                                        <input
-                                        class="input-field input-field-value"
-                                        type="value"
-                                        name="value"
-                                        id="value" />
-                                    </div>
+                                <div class="w-full">
+                                    <x-input-field label="Cobrança" name="charge" prefix="R$" helperText="Valor a ser cobrado no orçamento!" />
                                 </div>
 
                                 <div class="w-full flex justify-center">

@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ServiceSeeder::class,
             CustomerSeeder::class,
-            BudgetSeeder::class
+            BudgetSeeder::class,
+            StockSeeder::class
         ]);
     }
 }

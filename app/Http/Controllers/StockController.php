@@ -33,8 +33,10 @@ class StockController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name'  => 'required|string|max:255',
-            'value' => 'required|string|max:255',
+            'name'   => 'required|string|max:255',
+            'brand'  => 'required|string|max:255',
+            'value'  => 'required|string|max:255',
+            'charge' => 'required|string|max:255',
         ]);
 
         $stock = Stock::create($data);
@@ -71,7 +73,11 @@ class StockController extends Controller
 
         $stock->name = $request->input('name');
 
+        $stock->brand = $request->input('brand');
+
         $stock->value = $request->input('value');
+
+        $stock->charge = $request->input('charge');
 
         $stock->save();
 
