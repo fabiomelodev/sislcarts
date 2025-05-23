@@ -19,7 +19,9 @@ class TableStocks extends Table
     {
         return [
             'Nome',
+            'Marca',
             'Valor',
+            'Cobrança',
             'Criado em'
         ];
     }

@@ -46,7 +46,15 @@
                             </td>
 
                             <td>
-                                {{ $collection->value }}
+                                {{ $collection->brand }}
+                            </td>
+
+                            <td>
+                                R$ {{ $collection->value }}
+                            </td>
+
+                            <td>
+                                R$ {{ $collection->charge }}
                             </td>
 
                             <td>
