@@ -45,68 +45,19 @@
                             <div class="flex flex-wrap justify-between gap-y-4">
 
                                 <div class="w-full flex flex-col gap-1">
-
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="name">
-                                        Nome:
-                                    </label>
-
-                                    <input
-                                    class="input-field"
-                                    type="text"
-                                    name="name"
-                                    value="{{ $budget->customer->name }}" />
+                                    <x-input-field label="Nome" name="name" value="{{ $budget->customer->name }}" />
                                 </div>
 
                                 <div class="w-1/2 flex flex-col pr-4">
-
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="type_budget">
-                                        Tipo de orçamento:
-                                    </label>
-
-                                    <input
-                                    class="input-field"
-                                    type="phone"
-                                    name="type_budget"
-                                    id="type_budget"
-                                    value="{{ $budget->type_budget }}" />
+                                    <x-input-field label="Tipo de orçamento" name="type_budget" value="{{ $budget->type_budget }}" />
                                 </div>
 
                                 <div class="w-1/2 flex flex-col pl-4">
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="service_type">
-                                        Tipo de serviço:
-                                    </label>
-
-                                    <select
-                                    class="input-field"
-                                    name="service_type"
-                                    id="service_type"
-                                    value="{{ $budget->service_type }}">
-                                        <option value="0">Selecione</option>
-                                        <option value="Whatsapp">Whatsapp</option>
-                                        <option value="Recomendação">Recomendação</option>
-                                    </select>
+                                    <livewire:form.select-field label="Serviço" name="service" :options="$services" value="{{ $budget->service_id }}" />
                                 </div>
 
                                 <div class="w-full flex flex-col gap-1">
-
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="value">
-                                        Valor:
-                                    </label>
-
-                                    <input
-                                    class="input-field"
-                                    type="text"
-                                    name="value"
-                                    id="value"
-                                    value="{{ $budget->value }}" />
+                                    <x-input-field label="Valor" name="value" value="{{ $budget->value }}" />
                                 </div>
 
                                 <div class="w-full flex justify-center">

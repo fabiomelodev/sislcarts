@@ -97,22 +97,9 @@
                                     </div>
 
                                     <div class="w-full">
-                                        <label
-                                        class="label-field"
-                                        for="contact_type">
-                                            Por onde entrou em contato:
-                                        </label>
+                                        <livewire:form.select-field label="Por onde entrou em contato" name="contactType" :options="$this->getContactTypes()" value="{{ isset($contactType) ? $contactType : '' }}" event="setContactType" />
 
-                                        <select
-                                        class="input-field"
-                                        wire:model="contact_type"
-                                        id="contact_type">
-                                            <option value="0">Selecione</option>
-                                            <option value="Whatsapp">Whatsapp</option>
-                                            <option value="Recomendação">Recomendação</option>
-                                        </select>
-
-                                        @error('contact_type')
+                                        @error('contactType')
                                             <span class="error">
                                                 {{ $message }}
                                             </span>
@@ -122,22 +109,7 @@
 
                                 @if($showExistingCustomers)
                                     <div class="w-full">
-                                        <label
-                                        class="label-field"
-                                        for="customer">
-                                            Cliente:
-                                        </label>
-
-                                        <select
-                                        class="input-field"
-                                        wire:model="customer_id"
-                                        id="customer"
-                                        required>
-                                            <option value="0">Selecione</option>
-                                            @foreach($customers as $customer)
-                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <livewire:form.select-field label="Cliente" name="customer" :options="$this->getCustomers()" value="{{ isset($customer) ? $customer->id : '' }}" event="setCustomer" />
                                     </div>
                                 @endif
                             </div>
@@ -147,23 +119,10 @@
                             <div class="flex flex-wrap gap-4">
 
                                 <div class="w-full">
-                                    <label
-                                    class="label-field"
-                                    for="type_budget">
-                                        Tipo de orçamento:
-                                    </label>
-
-                                    <select
-                                    class="input-field"
-                                    wire:model.live="type_budget"
-                                    id="type_budget">
-                                        <option value="0">Selecione</option>
-                                        <option value="Valor fechado">Valor fechado</option>
-                                        <option value="Por hora">Por hora</option>
-                                    </select>
+                                    <livewire:form.select-field label="Tipo de orçamento" name="budget_type" :options="$this->getBudgetTypes()" value="{{ isset($budgetType) ? $budgetType : '' }}" event="setBudgetType" />
                                 </div>
 
-                                @if($type_budget != '')
+                                @if($budgetType != '')
                                     <div class="w-full">
                                         <label
                                         class="label-field"
@@ -187,183 +146,7 @@
 
                                 @if($value != '')
                                     <div class="w-full">
-                                        <label
-                                        class="label-field"
-                                        for="service_type">
-                                            Tipo de serviço:
-                                        </label>
-
-                                        <select
-                                        class="input-field"
-                                        wire:model.live="service_type"
-                                        id="service_type">
-                                            <option value="0">Selecione</option>
-                                            <option value="Bastidor">Bastidor</option>
-                                            <option value="Crochê">Crochê</option>
-                                        </select>
-                                    </div>
-                                @endif
-
-                                @if($service_type == 'Bastidor')
-                                    <div class="w-full">
-                                        <label
-                                        class="label-field"
-                                        for="frame_type">
-                                            Tipo do bastidor:
-                                        </label>
-
-                                        <select
-                                        class="input-field"
-                                        wire:model.live="frame_type"
-                                        id="frame_type">
-                                            <option value="0">Selecione</option>
-                                            <option value="Madeira">Madeira</option>
-                                            <option value="Plástico">Plástico</option>
-                                        </select>
-                                    </div>
-                                @endif
-
-                                @if($frame_type != '')
-                                    <div class="w-full">
-                                        <label
-                                        class="label-field"
-                                        for="qtde_line">
-                                            Tamanho do bastidor:
-                                        </label>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            wire:model="frame_size"
-                                            id="frame_size_16"
-                                            value="16" />
-
-                                            <label
-                                            class="label-field"
-                                            for="frame_size_16">
-                                                16cm
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            wire:model="frame_size"
-                                            id="frame_size_18"
-                                            value="18" />
-
-                                            <label
-                                            class="label-field"
-                                            for="frame_size_18">
-                                                18cm
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            wire:model="frame_size"
-                                            id="frame_size_20"
-                                            value="20" />
-
-                                            <label
-                                            class="label-field"
-                                            for="frame_size_20">
-                                                20cm
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            wire:model="frame_size"
-                                            id="frame_size_22"
-                                            value="22" />
-
-                                            <label
-                                            class="label-field"
-                                            for="frame_size_22">
-                                                22cm
-                                            </label>
-                                        </div>
-                                    </div>
-                                @endif
-
-                                {{-- <div class="w-full">
-                                    <label
-                                    class="label-field"
-                                    for="qtde_line">
-                                        Quantidade de linhas:
-                                    </label>
-
-                                    <input
-                                    class="input-field"
-                                    type="number"
-                                    name="qtde_line"
-                                    id="qtde_line" />
-                                </div> --}}
-
-                                @if($frame_type != '')
-                                    <div class="w-full">
-                                        <label class="label-field">
-                                            Tamanho do pano:
-                                        </label>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            name="cloth_size"
-                                            id="cloth_size_16"
-                                            value="16x16" />
-
-                                            <label
-                                            class="label-field"
-                                            for="cloth_size_16">
-                                                16x16
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            name="cloth_size"
-                                            id="cloth_size_18"
-                                            value="18x18" />
-
-                                            <label
-                                            class="label-field"
-                                            for="cloth_size_18">
-                                                18x18
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            name="cloth_size"
-                                            id="cloth_size_20"
-                                            value="20x20" />
-
-                                            <label
-                                            class="label-field"
-                                            for="cloth_size_20">
-                                                20x20
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input
-                                            type="radio"
-                                            name="cloth_size"
-                                            id="cloth_size_22"
-                                            value="22x22" />
-
-                                            <label
-                                            class="label-field"
-                                            for="cloth_size_22">
-                                                22x22
-                                            </label>
-                                        </div>
+                                        <livewire:form.select-field label="Serviço" name="service_id" :options="$this->getServices()" value="{{ isset($service) ? $service->id : '' }}" event="setService" />
                                     </div>
                                 @endif
                             </div>

@@ -1,5 +1,5 @@
 <x-layout.base>
-    <x-slot name="title">Login</x-slot>
+    <x-slot name="title">Registrar</x-slot>
 
     <section class="w-full h-screen border-t-4 border-[#001B48] relative flex justify-center items-center bg-[#F3F4F6]">
 
@@ -15,15 +15,29 @@
 
                         <div class="w-full">
                             <h1 class="text-4xl font-bold">
-                                Faça login
+                                Criar conta agora
                             </h1>
                         </div>
 
                         <div class="w-full">
-                            <form method="POST" action="{{ route('login.auth') }}">
+                            <form method="POST" action="{{ route('login.register') }}">
                                 @csrf
 
                                 <div class="flex flex-col gap-4">
+
+                                    <div>
+                                        <label
+                                        class="label-field"
+                                        for="name">
+                                            Nome:
+                                        </label>
+
+                                        <input
+                                        class="input-field"
+                                        type="text"
+                                        name="name"
+                                        id="name" />
+                                    </div>
 
                                     <div>
                                         <label
@@ -36,8 +50,7 @@
                                         class="input-field"
                                         type="email"
                                         name="email"
-                                        id="email"
-                                        value="fabiomelodev@gmail.com" />
+                                        id="email" />
                                     </div>
 
                                     <div>
@@ -51,22 +64,21 @@
                                         class="input-field"
                                         type="password"
                                         name="password"
-                                        id="password"
-                                        value="homolog123" />
+                                        id="password" />
                                     </div>
 
                                     <div>
                                         <input
                                         class="btn-submit"
                                         type="submit"
-                                        value="Entrar" />
+                                        value="Criar conta" />
                                     </div>
 
                                     <div>
                                         <a
                                         class="block text-sm font-bold text-center hover:underline text-gray-800"
-                                        href="{{ route('login.register') }}">
-                                            Criar conta
+                                        href="{{ route('login.index') }}">
+                                            Entrar
                                         </a>
                                     </div>
                                 </div>

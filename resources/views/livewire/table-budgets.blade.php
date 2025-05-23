@@ -46,11 +46,11 @@
                             </td>
 
                             <td>
-                                {{ $collection->service_type }}
+                                {{ $collection->service->name }}
                             </td>
 
                             <td>
-                                {{ $collection->value }}
+                                R$ {{ $collection->value }}
                             </td>
 
                             <td>

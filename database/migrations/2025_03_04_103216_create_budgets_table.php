@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Customer;
+use App\Models\Service;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,13 +16,11 @@ return new class extends Migration
     {
         Schema::create('budgets', function (Blueprint $table) {
             $table->id();
-            $table->string('type_budget');
+            $table->string('budget_type');
             $table->string('value')->nullable();
-            $table->string('per_hour')->nullable();
-            $table->string('service_type')->nullable();
-            $table->string('frame_type')->nullable();
-            $table->string('frame_size')->nullable();
+            $table->foreignIdFor(Service::class);
             $table->foreignIdFor(Customer::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

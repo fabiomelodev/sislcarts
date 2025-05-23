@@ -17,6 +17,7 @@ class ServiceSeeder extends Seeder
             'name'       => 'Bastidor',
             'slug'       => 'bastidor',
             'status'     => 'ativo',
+            'user_id'    => 1,
             'created_at' => date('y-m-d H:i:s'),
             'updated_at' => date('y-m-d H:i:s'),
         ]);
@@ -25,6 +26,7 @@ class ServiceSeeder extends Seeder
             'name'       => 'Crochê',
             'slug'       => 'croche',
             'status'     => 'ativo',
+            'user_id'    => 1,
             'created_at' => date('y-m-d H:i:s'),
             'updated_at' => date('y-m-d H:i:s'),
         ]);

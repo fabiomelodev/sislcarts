@@ -8,6 +8,10 @@
     }
 }
 @layer components {
+    .btn-submit {
+        @apply w-full shadow-lg rounded-lg block text-sm font-bold text-center text-white bg-purple-600 hover:bg-purple-700 cursor-pointer py-2 px-6;
+    }
+
     .button-action {
         @apply border border-purple-600 shadow-lg rounded-lg flex items-center gap-2 text-sm font-medium text-center capitalize text-purple-600 bg-white py-6 px-4;
     }
@@ -148,6 +152,58 @@
 
     .input-field-value {
         @apply pl-12;
+    }
+
+    .photo-label {
+        @apply w-full border-2 border-dashed border-gray-800 rounded-lg flex gap-2 justify-center items-center font-bold text-gray-800 hover:text-white hover:bg-gray-800 cursor-pointer py-6;
+    }
+
+    .photo-preview {
+        @apply w-24 h-24 border-2 border-gray-800 rounded-full relative bg-gray-100 p-1;
+    }
+
+    .photo-preview-edit {
+        @apply w-8 h-8 bottom-0 -right-1 shadow-lg rounded-full absolute flex justify-center items-center bg-gray-800 hover:bg-gray-700 cursor-pointer p-1;
+    }
+
+    .select-field {
+        @apply relative flex flex-col gap-1 z-10;
+    }
+
+    .select-field-label {
+        @apply text-sm font-medium;
+    }
+
+    .select-field-wrapper {
+        @apply w-full border border-purple-400 rounded-lg relative block bg-white cursor-pointer py-2 px-4;
+    }
+
+    .select-field-icon-wrapper {
+        @apply w-8 h-full top-0 right-0 transition duration-500 absolute flex flex-col justify-center items-center gap-2 p-2;
+    }
+
+    .select-field-icon {
+        @apply w-full h-1 rounded bg-purple-500/50;
+    }
+
+    .select-field-icon.is-active {
+        @apply bg-purple-500;
+    }
+
+    .select-field-value {
+        @apply text-sm font-medium capitalize;
+    }
+
+    .select-field-items {
+        @apply w-full top-full left-0 translate-y-2 border border-purple-400 rounded-lg absolute bg-white p-2;
+    }
+
+    .select-field-item {
+        @apply border-b last:border-0 hover:bg-gray-200 cursor-pointer py-1 px-2;
+    }
+
+    .select-field-item-title {
+        @apply text-sm font-normal capitalize;
     }
 
     .tab-link {
