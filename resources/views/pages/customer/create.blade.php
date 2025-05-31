@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="mt-6">
-                        <form action="{{ route('customer.store') }}" method="POST">
+                        <form action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="flex flex-wrap gap-4 justify-center">

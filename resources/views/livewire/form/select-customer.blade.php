@@ -1,0 +1,70 @@
+<div
+class="select-field"
+x-data="{ openOptions: false}">
+
+    <p class="select-field-label">
+        Cliente:
+    </p>
+
+    <input type="hidden" name="{{ $name }}" />
+
+    <div
+    class="select-field-wrapper"
+    x-on:click="openOptions = !openOptions">
+        <p class="select-field-value">
+            {{ $current }}
+        </p>
+
+        <div class="select-field-icon-wrapper">
+            <div class="select-field-icon" x-bind:class="openOptions == false ? 'is-active' : '' "></div>
+
+            <div class="select-field-icon" x-bind:class="openOptions == true ? 'is-active' : '' "></div>
+        </div>
+    </div>
+
+    <div
+    class="select-field-items"
+    x-show="openOptions"
+    x-transition:enter="transition duration-500"
+    x-transition:enter-start="-translate-y-10 opacity-0"
+    x-transition:enter-end="translate-y-2 opacity-100"
+    x-transition:leave="transition duration-500"
+    x-transition:leave-start="translate-y-2 opacity-100"
+    x-transition:leave-end="-translate-y-10 opacity-0">
+        @foreach($this->getCustomers() as $customer)
+            <div
+            class="select-field-item"
+            x-on:click="openOptions = false"
+            wire:click="setCustomer('{{ $customer->id}}')">
+            {{-- @if(isset($event))
+                wire:click="handleClick('{{ $key}}', '{{ $event}}')"
+            @else
+                wire:click="setValue('{{ $key }}')"
+            @endif>
+                <p class="select-field-item-title">
+                    {{ $option }}
+                </p> --}}
+
+
+                <div class="flex gap-2 items-center">
+                    <div class="w-8 h-8 border-2 border-gray-800 rounded-full overflow-hidden">
+                        <img
+                        class="w-full h-full object-cover"
+                        src="{{ Storage::url($customer->photo) }}"
+                        alt="{{ $customer->name }}" />
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-medium text-gray-800">
+                            {{ $customer->name }}
+                        </p>
+
+                        <p class="text-xs font-medium text-gray-800">
+                            {{ $customer->phone }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>

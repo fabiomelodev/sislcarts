@@ -6,7 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductFeatureController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\StockController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,15 +70,15 @@ Route::get('servico/{service:id}/editar', [ServiceController::class, 'edit'])->n
 
 Route::put('servico/{service:id}/atualizar', [ServiceController::class, 'update'])->name('service.update');
 
-Route::get('estoques', [StockController::class, 'index'])->name('stock.index');
+Route::get('produtos', [ProductController::class, 'index'])->name('product.index');
 
-Route::get('estoque/criar', [StockController::class, 'create'])->name('stock.create');
+Route::get('produto/criar', [ProductController::class, 'create'])->name('product.create');
 
-Route::post('estoque/criar', [StockController::class, 'store'])->name('stock.store');
+Route::post('produto/criar', [ProductController::class, 'store'])->name('product.store');
 
-Route::get('estoque/{stock:id}/editar', [StockController::class, 'edit'])->name('stock.edit');
+Route::get('produto/{product:id}/editar', [ProductController::class, 'edit'])->name('product.edit');
 
-Route::put('estoque/{stock:id}/atualizar', [StockController::class, 'update'])->name('stock.update');
+Route::put('product/{product:id}/atualizar', [ProductController::class, 'update'])->name('product.update');
 
 Route::get('tipos-produtos', [ProductTypeController::class, 'index'])->name('product-type.index');
 

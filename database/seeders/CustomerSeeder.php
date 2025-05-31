@@ -15,6 +15,7 @@ class CustomerSeeder extends Seeder
     {
         DB::table('customers')->insert([
             'name'         => 'Cacau',
+            'photo'        => 'photo_68315e926d8ee.png',
             'phone'        => '119999999',
             'contact_type' => 'whatsapp',
             'user_id'      => 1,
@@ -24,6 +25,7 @@ class CustomerSeeder extends Seeder
 
         DB::table('customers')->insert([
             'name'         => 'Toddinho',
+            'photo'        => 'photo_68315e926d8ee.png',
             'phone'        => '1199999123',
             'contact_type' => 'whatsapp',
             'user_id'      => 1,
