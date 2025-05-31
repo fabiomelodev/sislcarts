@@ -34,6 +34,7 @@ class CustomerController extends Controller
     {
         $data = $request->validate([
             'name'         => 'required|string|max:255',
+            'photo'        => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'phone'        => 'nullable|string|max:20',
             'contact_type' => 'required|string',
         ]);
@@ -42,6 +43,16 @@ class CustomerController extends Controller
             return redirect(route('customer.create', [
                 'message' => 'Cliente já existe!'
             ]));
+        }
+
+        if ($request->hasFile('photo')) {
+
+            $photo = $request->file('photo');
+            $photoName = uniqid('photo_') . '.' . $photo->getClientOriginalExtension();
+
+            $path = $photo->storeAs('', $photoName, 'public');
+
+            $data['photo'] = $path;
         }
 
         $customer = Customer::create($data);
@@ -77,6 +88,8 @@ class CustomerController extends Controller
         $customer = Customer::findOrFail($customer->id);
 
         $customer->name = $request->input('name');
+
+        $customer->photo = $request->input('photo');
 
         $customer->phone = $request->input('phone');
 

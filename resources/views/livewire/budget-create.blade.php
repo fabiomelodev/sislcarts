@@ -109,7 +109,7 @@
 
                                 @if($showExistingCustomers)
                                     <div class="w-full">
-                                        <livewire:form.select-field label="Cliente" name="customer" :options="$this->getCustomers()" value="{{ isset($customer) ? $customer->id : '' }}" event="setCustomer" />
+                                        <livewire:form.select-customer />
                                     </div>
                                 @endif
                             </div>
@@ -155,6 +155,57 @@
                         @if($stepCurrent == 3)
                             <div class="flex flex-wrap gap-4">
 
+                                <div class="w-full grid grid-cols-2 gap-4">
+
+                                    @foreach($this->getProducts() as $product)
+                                        <div
+                                        class="border-2 border-purple-800 shadow-lg rounded-lg flex flex-wrap cursor-pointer group p-4"
+                                        x-data="{ addProductItem: false }">
+
+                                            <div class="w-1/3 h-[100px] shadow-lg rounded-lg overflow-hidden bg-white"></div>
+
+                                            <div class="w-2/3 pl-4">
+
+                                                <h4 class="text-lg font-bold capitalize">
+                                                    {{ $product->name }}
+                                                </h4>
+
+                                                <p class="text-xs">
+                                                    <strong>Valor cobrado:</strong> R$ {{ $product->charge }}
+                                                </p>
+                                            </div>
+
+                                            <div class="w-full">
+
+                                                <div class="flex justify-end">
+                                                    <button
+                                                    class="rounded-lg text-sm font-medium text-center capitalize text-white bg-red-500 hover:bg-red-500/80 p-1"
+                                                    type="button"
+                                                    wire:click="removeProduct({{ $product->id }})"
+                                                    x-on:click="addProductItem = false"
+                                                    x-bind:class="addProductItem ? 'block': 'hidden'">
+                                                        Remover
+                                                    </button>
+
+                                                    <button
+                                                    class="rounded-lg text-sm font-medium text-center capitalize text-white bg-indigo-500 hover:bg-indigo-500/80 p-1"
+                                                    type="button"
+                                                    wire:click="addProduct({{ $product->id }})"
+                                                    x-on:click="addProductItem = true"
+                                                    x-bind:class="addProductItem ? 'hidden' : 'block'">
+                                                        Adicionar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                        @if($stepCurrent == 4)
+                            <div class="flex flex-wrap gap-4">
+
                                 <div class="w-full">
                                     <h3 class="text-sm font-bold text-center">
                                         Detalhe
@@ -163,29 +214,25 @@
 
                                 <div class="w-full">
                                     <p class="text-sm">
-                                        <strong>Tipo do serviço: </strong> Bastidor
+                                        <strong>Tipo do serviço: </strong> {{ $service->name }}
                                     </p>
 
                                     <p class="text-sm">
-                                        <strong>Tipo do bastidor:</strong> Madeira | <span class="font-bold">R$ 00,00</span>
-                                    </p>
+                                        <strong>Produtos: </strong> <br />
 
-                                    <p class="text-sm">
-                                        <strong>Linhas: </strong> 2x | <span class="font-bold">R$ 00,00</span>
-                                    </p>
-
-                                    <p class="text-sm">
-                                        <strong>Pano: </strong> 25x25 | <span class="font-bold">R$ 00,00</span>
-                                    </p>
-
-                                    <p class="text-sm">
-                                        <strong>Acabamento: </strong> <span class="font-bold">R$ 00,00</span>
+                                        <ul class="list-disc pl-4">
+                                            @foreach($this->getProductsQuery() as $product)
+                                                <li>
+                                                    {{ $product->name }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </p>
                                 </div>
 
                                 <div class="w-full mt-6">
                                     <h3 class="font-bold">
-                                        Total: R$ 00,00
+                                        Total: R$ {{ $this->getBudgetValue() }}
                                     </h3>
                                 </div>
                             </div>
@@ -203,7 +250,7 @@
                             Voltar
                         </button>
 
-                        @if($stepCurrent != '3')
+                        @if($stepCurrent != '4')
                         <button
                         class="shadow-lg rounded-lg text-sm font-bold text-center text-white bg-purple-400 hover:bg-purple-500 py-2 px-4"
                         type="button"

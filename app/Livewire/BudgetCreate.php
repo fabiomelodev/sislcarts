@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Budget;
+use App\Models\BudgetProduct;
 use App\Models\Customer;
 use App\Models\Service;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -37,11 +39,15 @@ class BudgetCreate extends Component
 
     public Service $service;
 
+    public $products = [];
+
+    public $budgetValues = [];
+
     protected $listeners = [
         'setCustomer',
         'setContactTypes',
         'setBudgetType',
-        'setService'
+        'setService',
     ];
 
     protected $messages = [
@@ -68,12 +74,12 @@ class BudgetCreate extends Component
     }
 
     #[On('setCustomer')]
-    public function setCustomer($customer_id)
+    public function setCustomer($customerId)
     {
-        $this->customer_id = $customer_id;
+        $this->customer_id = $customerId;
 
         $this->customer = Customer::where('user_id', Auth::user()->id)
-            ->find($customer_id);
+            ->find($customerId);
     }
 
     public function getCustomers(): array
@@ -125,6 +131,42 @@ class BudgetCreate extends Component
         $this->budgetType = $budgetType;
     }
 
+    public function getProducts()
+    {
+        return Product::all();
+    }
+
+    public function addProduct($productId)
+    {
+        array_push($this->products, $productId);
+    }
+
+    public function removeProduct($productId)
+    {
+        $index = array_search($productId, $this->products);
+
+        if ($index !== false) {
+            unset($this->products[$index]);
+        }
+
+        $this->products = array_values($this->products);
+    }
+
+    public function getProductsQuery()
+    {
+        return Product::whereIn('id', $this->products)->get();
+    }
+
+    public function addBudgetValue($value)
+    {
+        array_push($this->budgetValues, $value);
+    }
+
+    public function getBudgetValue()
+    {
+        return array_sum($this->budgetValues);
+    }
+
     public function validateStepFirst()
     {
         if (!empty(Customer::find($this->customer_id))) {
@@ -162,12 +204,23 @@ class BudgetCreate extends Component
             && isset($this->service)
             && $this->value != ''
         ) {
+            $this->addBudgetValue($this->value);
+
             $this->stepCurrent = 3;
 
             $this->validateFields = false;
         } else {
             $this->validateFields = true;
         }
+    }
+
+    public function validateStepThird()
+    {
+        foreach ($this->getProductsQuery() as $product) {
+            $this->addBudgetValue($product->charge);
+        }
+
+        $this->stepCurrent = 4;
     }
 
     public function prev()
@@ -186,6 +239,10 @@ class BudgetCreate extends Component
         if ($step == '2') {
             $this->validateStepSecond();
         }
+
+        if ($step == '3') {
+            $this->validateStepThird();
+        }
     }
 
     public function save()
@@ -197,6 +254,13 @@ class BudgetCreate extends Component
             'customer_id'  => $this->customer->id,
             'user_id'      => Auth::user()->id
         ]);
+
+        foreach ($this->products as $product) {
+            BudgetProduct::create([
+                'budget_id'  => $budget->id,
+                'product_id' => $product
+            ]);
+        }
 
         redirect(route('budget.edit', [
             'budget' => $budget
