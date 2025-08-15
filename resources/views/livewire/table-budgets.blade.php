@@ -58,6 +58,12 @@
                             </td>
 
                             <td class="flex justify-end gap-4">
+                                <a
+                                class="rounded-md flex justify-center items-center text-xs font-semibold text-center text-white bg-green-500 hover:bg-green-400 px-2"
+                                href="#">
+                                    Iniciar
+                                </a>
+
                                 <x-table.button-edit :record="$collection" route="budget.edit" />
 
                                 <livewire:button-delete :record="$collection" :key="$collection->id"/>

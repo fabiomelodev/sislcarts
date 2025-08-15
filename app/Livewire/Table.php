@@ -26,7 +26,7 @@ class Table extends Component
 
     public function mount()
     {
-        $this->getTableQuery();
+        $this->updatedTableQuery();
     }
 
     public static function headings(): array
@@ -34,23 +34,24 @@ class Table extends Component
         return [];
     }
 
-    public function getTableQuery()
+
+    public function updatedTableQuery()
     {
-        $this->collections = static::$model::orderBy($this->orderColumn, $this->order)->get();
+        $this->collections = static::$model::orderBy($this->orderColumn, $this->order)->hasUser()->get();
     }
 
     public function orderByAsc()
     {
         $this->order = 'asc';
 
-        $this->getTableQuery();
+        $this->updatedTableQuery();
     }
 
     public function orderByDesc()
     {
         $this->order = 'desc';
 
-        $this->getTableQuery();
+        $this->updatedTableQuery();
     }
 
     #[On('deleteRecord')]
@@ -62,7 +63,7 @@ class Table extends Component
             $record->delete();
         }
 
-        $this->getTableQuery();
+        $this->updatedTableQuery();
 
         return redirect()
             ->route(static::$routeName, $record)

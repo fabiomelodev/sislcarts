@@ -36,8 +36,7 @@
                                         class="input-field"
                                         type="email"
                                         name="email"
-                                        id="email"
-                                        value="fabiomelodev@gmail.com" />
+                                        id="email" />
                                     </div>
 
                                     <div>
@@ -51,8 +50,7 @@
                                         class="input-field"
                                         type="password"
                                         name="password"
-                                        id="password"
-                                        value="homolog123" />
+                                        id="password" />
                                     </div>
 
                                     <div>

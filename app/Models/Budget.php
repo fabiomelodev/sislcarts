@@ -21,6 +21,11 @@ class Budget extends Model
         });
     }
 
+    public function scopeHasUser($query)
+    {
+        return $query->where('user_id', Auth::user()->id);
+    }
+
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);

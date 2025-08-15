@@ -4,95 +4,108 @@ x-data="{ openMenuWrapper: false, openMenu: false }">
 
     <aside class="w-56 h-full top-0 left-0 fixed pt-10">
 
-        <div class="w-full h-full bg-gray-300 p-4">
+        <div class="w-full h-full flex flex-col justify-between bg-gray-300 p-4">
 
-            <div class="relative flex justify-center mt-4 mb-2">
+            <div>
+                <div class="relative flex justify-center mt-4 mb-2">
 
-                <div class="w-full h-[1px] top-1/2 left-0 -translate-y-1/2 absolute bg-purple-800"></div>
+                    <div class="w-full h-[1px] top-1/2 left-0 -translate-y-1/2 absolute bg-purple-800"></div>
 
-                <p class="relative inline-block text-sm font-bold text-center text-purple-800 bg-gray-300 px-2">
-                    Principal
-                </p>
-            </div>
+                    <p class="relative inline-block text-sm font-bold text-center text-purple-800 bg-gray-300 px-2">
+                        Principal
+                    </p>
+                </div>
 
-            <ul class="border shadow-md rounded-md overflow-hidden flex flex-col bg-white">
-                <li class="border-b">
-                    <a
-                    class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-3 px-4"
-                    href="{{ route('budget.index') }}">
+                <ul class="border shadow-md rounded-md overflow-hidden flex flex-col bg-white">
+                    <li class="border-b">
+                        <a
+                        class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-3 px-4"
+                        href="{{ route('budget.index') }}">
 
-                        <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
+                            <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
 
-                        Orçamentos
-                    </a>
-                </li>
+                            Orçamentos
+                        </a>
+                    </li>
 
-                <li class="border-b">
-                    <a
-                    class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
-                    href="{{ route('service.index') }}">
+                    <li class="border-b">
+                        <a
+                        class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
+                        href="{{ route('service.index') }}">
 
-                        <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
+                            <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
 
-                        Serviços
-                    </a>
-                </li>
+                            Serviços
+                        </a>
+                    </li>
 
-                <li>
-                    <a
-                    class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
-                    href="{{ route('customer.index') }}">
+                    <li>
+                        <a
+                        class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
+                        href="{{ route('customer.index') }}">
 
-                        <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
+                            <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
 
-                        Clientes
-                    </a>
-                </li>
-            </ul>
+                            Clientes
+                        </a>
+                    </li>
+                </ul>
 
-            <div class="relative flex justify-center mt-4 mb-2">
+                <div class="relative flex justify-center mt-4 mb-2">
 
-                <div class="w-full h-[1px] top-1/2 left-0 -translate-y-1/2 absolute bg-purple-800"></div>
+                    <div class="w-full h-[1px] top-1/2 left-0 -translate-y-1/2 absolute bg-purple-800"></div>
 
-                <p class="relative inline-block text-sm font-bold text-center text-purple-800 bg-gray-300 px-2">
-                    Produtos
-                </p>
-            </div>
-
-            <ul class="border shadow-md rounded-md overflow-hidden flex flex-col bg-white">
-                <li class="border-b">
-                    <a
-                    class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
-                    href="{{ route('product.index') }}">
-
-                        <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
-
+                    <p class="relative inline-block text-sm font-bold text-center text-purple-800 bg-gray-300 px-2">
                         Produtos
-                    </a>
-                </li>
+                    </p>
+                </div>
 
-                <li class="border-b">
-                    <a
-                    class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
-                    href="{{ route('product-type.index') }}">
+                <ul class="border shadow-md rounded-md overflow-hidden flex flex-col bg-white">
+                    <li class="border-b">
+                        <a
+                        class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
+                        href="{{ route('product.index') }}">
 
-                        <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
+                            <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
 
-                        Tipos de Produtos
-                    </a>
-                </li>
+                            Produtos
+                        </a>
+                    </li>
 
-                <li>
-                    <a
-                    class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
-                    href="{{ route('product-feature.index') }}">
+                    <li class="border-b">
+                        <a
+                        class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
+                        href="{{ route('product-type.index') }}">
 
-                        <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
+                            <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
 
-                        Características
-                    </a>
-                </li>
-            </ul>
+                            Tipos de Produtos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                        class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
+                        href="{{ route('product-feature.index') }}">
+
+                            <svg class="w-4 h-4 fill-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
+
+                            Características
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <a
+                class="border shadow-md rounded-md flex items-center gap-2 text-sm font-semibold text-white bg-red-500 hover:bg-red-400 py-2 px-4"
+                href="{{ route('logout') }}">
+
+                    <svg class="w-4 h-4 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"/></svg>
+
+                    Sair
+                </a>
+            </div>
         </div>
     </aside>
 

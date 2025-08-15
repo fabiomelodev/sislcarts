@@ -35,10 +35,14 @@ class Service extends Model
     {
         static::creating(function ($model) {
             $model->slug = Str::slug($model->name);
+
+            $model->user_id = Auth::user()->id;
         });
 
         static::updating(function ($model) {
             $model->slug = Str::slug($model->name);
+
+            $model->user_id = Auth::user()->id;
         });
     }
 
@@ -50,6 +54,11 @@ class Service extends Model
     public function scopeInactives($query)
     {
         return $query->where('status', Status::Inactive);
+    }
+
+    public function scopeHasUser($query)
+    {
+        return $query->where('user_id', Auth::user()->id);
     }
 
     public function user(): BelongsTo
