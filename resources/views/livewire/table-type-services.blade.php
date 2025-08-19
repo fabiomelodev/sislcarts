@@ -54,7 +54,7 @@
                             </td>
 
                             <td class="flex justify-end gap-4">
-                                <x-table.button-edit :record="$collection" route="service.edit" />
+                                <x-table.button-edit :record="$collection" route="type-service.edit" />
 
                                 <livewire:button-delete :record="$collection" :key="$collection->id"/>
                             </td>
