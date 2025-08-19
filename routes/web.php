@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductFeatureController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TypeServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,6 +90,14 @@ Route::post('tipo-produto/criar', [ProductTypeController::class, 'store'])->name
 Route::get('tipo-produto/{productType:id}/editar', [ProductTypeController::class, 'edit'])->name('product-type.edit');
 
 Route::put('tipo-produto/{productType:id}/atualizar', [ProductTypeController::class, 'update'])->name('product-type.update');
+
+Route::get('tipos-servicos', [TypeServiceController::class, 'index'])->name('type-service.index');
+
+Route::get('tipos-servicos/criar', [TypeServiceController::class, 'create'])->name('type-service.create');
+
+Route::get('tipos-servicos/{typeService:id}/editar', [TypeServiceController::class, 'edit'])->name('type-service.edit');
+
+Route::put('tipos-servicos/{typeService:id}/atualizar', [TypeServiceController::class, 'update'])->name('type-service.update');
 
 Route::get('produtos-caracteristicas', [ProductFeatureController::class, 'index'])->name('product-feature.index');
 
