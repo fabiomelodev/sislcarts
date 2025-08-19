@@ -6,7 +6,7 @@
             class="h-8 border shadow-lg rounded-lg text-xs font-medium py-1 px-4"
             wire:model.live="orderColumn">
                 <option value="created_at">Criado em</option>
-                <option value="value">Valor</option>
+                <option value="name">Nome</option>
             </select>
 
             <div class="flex gap-2">

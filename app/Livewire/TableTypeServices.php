@@ -16,9 +16,7 @@ class TableTypeServices extends Table
 
     public static string $view = 'table-type-services';
 
-    public string $status = '';
-
-    protected $listeners = ['deleteRecord' => 'delete', 'setStatus' => 'setStatus'];
+    protected $listeners = ['deleteRecord' => 'delete'];
 
     public static function headings(): array
     {
@@ -27,13 +25,5 @@ class TableTypeServices extends Table
             'Status',
             'Criado em'
         ];
-    }
-
-    #[On('setStatus')]
-    public function setStatus($status)
-    {
-        dd('setStatus');
-
-        $this->status = $status;
     }
 }
