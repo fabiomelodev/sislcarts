@@ -19,7 +19,7 @@ class TableBudgets extends Table
     {
         return [
             'Cliente',
-            'Serviço',
+            'Tipo de serviço',
             'Valor',
             'Criado em'
         ];

@@ -26,7 +26,7 @@ class SelectField extends Component
 
         $this->options = $options;
 
-        if (isset($value)) {
+        if (isset($value) && $value !== '') {
             $this->value = $value;
 
             $this->current = $this->options[$value];

@@ -56,6 +56,11 @@ class TypeService extends Model
         });
     }
 
+    public function scopeActives($query)
+    {
+        return $query->where('status', Status::Active);
+    }
+
     public function scopeHasUser($query)
     {
         return $query->where('user_id', Auth::user()->id);
