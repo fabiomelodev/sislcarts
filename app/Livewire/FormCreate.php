@@ -14,6 +14,8 @@ class FormCreate extends Component
 
     public static string $routeEdit = '';
 
+    public static string $parameterEdit = 'record';
+
     public string $name = '';
 
     public string $status = '';
@@ -40,7 +42,7 @@ class FormCreate extends Component
         ]);
 
         return redirect()->route(static::$routeEdit, [
-            'record' => $record
+            static::$parameterEdit => $record
         ]);
     }
 

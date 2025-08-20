@@ -38,11 +38,16 @@
                         <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @forelse ($collections as $collection)
                         <tr wire:key="budget-{{ $collection->id }}">
                             <td>
                                 {{ $collection->name }}
+                            </td>
+
+                            <td>
+                                <x-table.status-column :name="$collection->status" />
                             </td>
 
                             <td>

@@ -30,21 +30,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name'   => 'required|string|max:255',
-            'brand'  => 'required|string|max:255',
-            'value'  => 'required|string|max:255',
-            'charge' => 'required|string|max:255',
-        ]);
-
-        $stock = Product::create($data);
-
-        return redirect()
-            ->route('product.edit', $stock->id)
-            ->with('success', 'Produto cadastrado com sucesso!');
-    }
+    public function store(Request $request) {}
 
     /**
      * Display the specified resource.

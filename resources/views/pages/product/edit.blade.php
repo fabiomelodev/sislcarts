@@ -32,37 +32,7 @@
                     </div>
 
                     <div class="mt-6">
-                        <form action="{{ route('product.update', $product->id) }}" method="POST">
-                            @method('PUT')
-                            @csrf
-
-                            <div class="flex flex-wrap gap-4">
-
-                                <div class="w-full flex flex-col gap-1">
-                                    <x-input-field label="Nome" name="name" value="{{ $product->name }}" />
-                                </div>
-
-                                <div class="w-full flex flex-col gap-1">
-                                    <x-input-field label="Marca" name="brand" value="{{ $product->brand }}" />
-                                </div>
-
-                                <div class="w-full">
-                                    <x-input-field label="Valor" name="value" value="{{ $product->value }}" prefix="R$" />
-                                </div>
-
-                                <div class="w-full">
-                                    <x-input-field label="Cobrança" name="charge" value="{{ $product->charge }}" prefix="R$" helperText="Valor a ser cobrado no orçamento!" />
-                                </div>
-
-                                <div class="w-full flex justify-center">
-                                    <button
-                                    class="shadow-lg rounded-lg text-sm font-bold text-center text-white bg-purple-400 hover:bg-purple-500 py-2 px-4"
-                                    type="submit">
-                                        Salvar
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        <livewire:form-edit-product :record="$product" />
                     </div>
                 </div>
             </div>

@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TypeServiceSeeder::class,
             TypeProductSeeder::class,
+            ProductSeeder::class
             // ServiceSeeder::class,
             // CustomerSeeder::class,
             // BudgetSeeder::class,
-            // ProductSeeder::class
         ]);
     }
 }

@@ -19,6 +19,7 @@ class TableProducts extends Table
     {
         return [
             'Nome',
+            'Status',
             'Marca',
             'Valor',
             'Cobrança',
