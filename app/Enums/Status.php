@@ -4,14 +4,14 @@ namespace App\Enums;
 
 enum Status: string
 {
-    case Active = 'ativo';
     case Inactive = 'inativo';
+    case Active = 'ativo';
 
     public function label(): string
     {
         return match ($this) {
-            self::Active   => 'Ativo',
             self::Inactive => 'Inativo',
+            self::Active   => 'Ativo',
         };
     }
 

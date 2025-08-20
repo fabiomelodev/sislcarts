@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->enum('status', ['ativo', 'inativo'])->default('ativo');
+            $table->enum('status', ['inativo', 'ativo'])->default('ativo');
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

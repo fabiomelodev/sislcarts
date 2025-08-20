@@ -24,7 +24,7 @@
         </div>
 
         <div class="w-full flex flex-col gap-1">
-            <livewire:form.select-field label="Status" name="status" :options="\App\Enums\Status::values()" value="{{ $status }}" event="setStatus"/>
+            <livewire:form.select-field label="Status" name="status" :options="\App\Enums\Status::values()" value="{{ $status }}" event="setStatus" />
 
             @error('status')
                 <span class="error">

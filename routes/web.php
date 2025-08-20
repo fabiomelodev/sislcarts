@@ -97,8 +97,6 @@ Route::get('tipos-servicos/criar', [TypeServiceController::class, 'create'])->na
 
 Route::get('tipos-servicos/{typeService:id}/editar', [TypeServiceController::class, 'edit'])->name('type-service.edit');
 
-Route::put('tipos-servicos/{typeService:id}/atualizar', [TypeServiceController::class, 'update'])->name('type-service.update');
-
 Route::get('produtos-caracteristicas', [ProductFeatureController::class, 'index'])->name('product-feature.index');
 
 Route::get('produto-caracteristica/criar', [ProductFeatureController::class, 'create'])->name('product-feature.create');

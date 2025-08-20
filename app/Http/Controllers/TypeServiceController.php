@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Status;
 use App\Models\TypeService;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Enum;
 
 class TypeServiceController extends Controller
 {
@@ -55,20 +53,7 @@ class TypeServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TypeService $typeService)
-    {
-        $typeService = TypeService::findOrFail($typeService->id);
-
-        $typeService->name = $request->input('name');
-
-        $typeService->status = $request->input('status');
-
-        $typeService->save();
-
-        return redirect()
-            ->route('type-service.edit', $typeService->id)
-            ->with('success', 'Atualizado com sucesso!');
-    }
+    public function update(Request $request) {}
 
     /**
      * Remove the specified resource from storage.

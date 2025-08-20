@@ -61,6 +61,11 @@ class Service extends Model
         return $query->where('user_id', Auth::user()->id);
     }
 
+    public function budget(): BelongsTo
+    {
+        return $this->belongsTo(Budget::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
