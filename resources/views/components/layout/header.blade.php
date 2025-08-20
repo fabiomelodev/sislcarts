@@ -120,11 +120,11 @@ x-data="{ openMenuWrapper: false, openMenu: false }">
         </div>
     </aside>
 
-    <div class="container flex justify-between items-center">
+    <div class="container flex justify-end items-center">
 
-        <div>
+        {{-- <div>
             <p x-text="openMenu"></p>
-        </div>
+        </div> --}}
 
         <div>
             <button

@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TypeServiceSeeder::class,
             TypeProductSeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            CustomerSeeder::class,
             // ServiceSeeder::class,
-            // CustomerSeeder::class,
             // BudgetSeeder::class,
         ]);
     }

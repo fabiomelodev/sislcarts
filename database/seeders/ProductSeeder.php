@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('products')->insert(
+        DB::table('products')->insert([
             [
                 'name'       => 'Linha Amarela 2kg',
                 'slug'       => 'linha-amarela-2kg',
@@ -47,6 +47,6 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ]
-        );
+        ]);
     }
 }

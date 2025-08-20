@@ -15,9 +15,11 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->string('photo')->nullable();
             $table->string('phone');
             $table->string('contact_type')->nullable();
+            $table->enum('status', ['inativo', 'ativo'])->default('ativo');
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

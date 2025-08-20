@@ -19,6 +19,7 @@ class TableCustomers extends Table
     {
         return [
             'Nome',
+            'Status',
             'Contato',
             'Encomenda(s)',
             'Criado em'

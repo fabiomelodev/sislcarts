@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeProductController;
@@ -29,14 +30,18 @@ Route::get('budget')->name('budget.index');
 
 Route::get('service')->name('service.index');
 
-Route::get('customer')->name('customer.index');
-
 Route::get('product-feature')->name('product-feature.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('/clientes', 'index')->name('customer.index');
+        Route::get('/clientes/criar', 'create')->name('customer.create');
+        Route::get('/clientes/{customer:id}/editar', 'edit')->name('customer.edit');
+    });
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('/produtos', 'index')->name('product.index');
