@@ -6,6 +6,7 @@
             class="h-8 border shadow-lg rounded-lg text-xs font-medium py-1 px-4"
             wire:model.live="orderColumn">
                 <option value="created_at">Criado em</option>
+                <option value="name">Nome</option>
             </select>
 
             <div class="flex gap-2">
@@ -45,11 +46,15 @@
                             </td>
 
                             <td>
+                                <x-table.status-column :name="$collection->status" />
+                            </td>
+
+                            <td>
                                 {{ $collection->created_at->format('d/m/Y') }}
                             </td>
 
                             <td class="flex justify-end gap-4">
-                                <x-table.button-edit :record="$collection" route="product-type.edit" />
+                                <x-table.button-edit :record="$collection" route="type-product.edit" />
 
                                 <livewire:button-delete :record="$collection" :key="$collection->id"/>
                             </td>

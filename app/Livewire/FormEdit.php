@@ -3,16 +3,15 @@
 namespace App\Livewire;
 
 use App\Enums\Status;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class FormCreate extends Component
+class FormEdit extends Component
 {
-    public static string $model = '';
+    public static string $view = 'form-edit';
 
-    public static string $view = 'form-create';
-
-    public static string $routeEdit = '';
+    public Model $record;
 
     public string $name = '';
 
@@ -28,20 +27,27 @@ class FormCreate extends Component
         'status.required' => 'O status é obrigatório.'
     ];
 
-    public function save()
+    public function mount(Model $record)
+    {
+        $this->record = $record;
+
+        $this->name = $this->record->name;
+
+        $this->status = $this->record->status_value;
+    }
+
+    public function update()
     {
         $this->validate();
 
         $status = $this->status == 1 ? Status::Active : Status::Inactive;
 
-        $record = static::$model::create([
+        $this->record->update([
             'name'   => $this->name,
             'status' => $status
         ]);
 
-        return redirect()->route(static::$routeEdit, [
-            'record' => $record
-        ]);
+        session()->flash('success', 'Atualizado com sucesso!');
     }
 
     #[On('setStatus')]

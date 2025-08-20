@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductType;
+use App\Models\TypeProduct;
 use Illuminate\Http\Request;
 
-class ProductTypeController extends Controller
+class TypeProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $productsTypes = ProductType::all();
+        $typeProducts = TypeProduct::all();
 
-        return view('pages.product-type.index', [
-            'productsTypes' => $productsTypes
+        return view('pages.type-product.index', [
+            'typeProducts' => $typeProducts
         ]);
     }
 
@@ -24,24 +24,13 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        return view('pages.product-type.create');
+        return view('pages.type-product.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $productType = ProductType::create($data);
-
-        return redirect()
-            ->route('product-type.edit', $productType->id)
-            ->with('success', 'Tipo de Produto cadastrado com sucesso!');
-    }
+    public function store(Request $request) {}
 
     /**
      * Display the specified resource.
@@ -54,10 +43,10 @@ class ProductTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductType $productType)
+    public function edit(TypeProduct $typeProduct)
     {
-        return view('pages.product-type.edit', [
-            'productType' => $productType,
+        return view('pages.type-product.edit', [
+            'typeProduct' => $typeProduct,
         ]);
     }
 

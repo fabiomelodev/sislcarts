@@ -4,9 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductFeatureController;
-use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TypeProductController;
 use App\Http\Controllers\TypeServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -81,21 +81,30 @@ Route::get('produto/{product:id}/editar', [ProductController::class, 'edit'])->n
 
 Route::put('product/{product:id}/atualizar', [ProductController::class, 'update'])->name('product.update');
 
-Route::get('tipos-produtos', [ProductTypeController::class, 'index'])->name('product-type.index');
 
-Route::get('tipo-produto/criar', [ProductTypeController::class, 'create'])->name('product-type.create');
 
-Route::post('tipo-produto/criar', [ProductTypeController::class, 'store'])->name('product-type.store');
 
-Route::get('tipo-produto/{productType:id}/editar', [ProductTypeController::class, 'edit'])->name('product-type.edit');
+Route::get('tipos-produtos', [TypeProductController::class, 'index'])->name('type-product.index');
 
-Route::put('tipo-produto/{productType:id}/atualizar', [ProductTypeController::class, 'update'])->name('product-type.update');
+Route::get('tipos-produtos/criar', [TypeProductController::class, 'create'])->name('type-product.create');
+
+Route::get('tipos-produtos/{typeProduct:id}/editar', [TypeProductController::class, 'edit'])->name('type-product.edit');
+
+
+
 
 Route::get('tipos-servicos', [TypeServiceController::class, 'index'])->name('type-service.index');
 
 Route::get('tipos-servicos/criar', [TypeServiceController::class, 'create'])->name('type-service.create');
 
 Route::get('tipos-servicos/{typeService:id}/editar', [TypeServiceController::class, 'edit'])->name('type-service.edit');
+
+
+
+
+
+
+
 
 Route::get('produtos-caracteristicas', [ProductFeatureController::class, 'index'])->name('product-feature.index');
 

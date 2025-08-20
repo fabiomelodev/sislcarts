@@ -1,5 +1,5 @@
 <x-layout.base>
-    <x-slot name="title">Serviços</x-slot>
+    <x-slot name="title">Tipos de produtos</x-slot>
 
     @if(session('success'))
         <x-notifications.success message="{{ session('success') }}"/>
@@ -18,14 +18,14 @@
                             <h1
                             class="text-2xl font-bold"
                             style="line-height:100%">
-                                Tipos de Produtos
+                                Tipos de produtos
                             </h1>
                         </div>
 
                         <div>
                             <a
                             class="button-action button-action-create"
-                            href="{{ route('product-type.create') }}">
+                            href="{{ route('type-product.create') }}">
                                 Criar novo
                             </a>
                         </div>
@@ -34,7 +34,7 @@
                     <div class="flex mt-4">
 
                         <!-- table -->
-                        <livewire:table-product-type :collections="$productsTypes" />
+                        <livewire:table-type-product :collections="$typeProducts" />
                         <!-- end table -->
                     </div>
                 </div>
