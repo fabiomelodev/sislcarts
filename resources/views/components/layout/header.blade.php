@@ -7,7 +7,7 @@ x-data="{ openMenuWrapper: false, openMenu: false }">
         <div class="w-full h-full flex flex-col justify-between bg-gray-300 p-4">
 
             <div>
-                <div class="relative flex justify-center mt-4 mb-2">
+                {{-- <div class="relative flex justify-center mt-4 mb-2">
 
                     <div class="w-full h-[1px] top-1/2 left-0 -translate-y-1/2 absolute bg-purple-800"></div>
 
@@ -49,7 +49,7 @@ x-data="{ openMenuWrapper: false, openMenu: false }">
                             Clientes
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
 
                 <div class="relative flex justify-center mt-4 mb-2">
 
@@ -94,7 +94,7 @@ x-data="{ openMenuWrapper: false, openMenu: false }">
                         </a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                         <a
                         class="flex items-center gap-2 text-sm font-semibold text-purple-800 hover:text-white bg-white hover:bg-purple-800 py-2 px-4"
                         href="{{ route('product-feature.index') }}">
@@ -103,7 +103,7 @@ x-data="{ openMenuWrapper: false, openMenu: false }">
 
                             Características
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
 
