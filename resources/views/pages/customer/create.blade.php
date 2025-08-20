@@ -28,69 +28,7 @@
                     </div>
 
                     <div class="mt-6">
-                        <form action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="flex flex-wrap gap-4 justify-center">
-
-                                <div class="w-4/12 flex justify-center">
-                                    <livewire:photo-input-field />
-                                </div>
-
-                                <div class="w-full flex flex-col gap-1">
-
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="name">
-                                        Nome:
-                                    </label>
-
-                                    <input
-                                    class="input-field"
-                                    type="text"
-                                    name="name" />
-                                </div>
-
-                                <div class="w-full flex flex-col gap-1">
-
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="phone">
-                                        Telefone:
-                                    </label>
-
-                                    <input
-                                    class="input-field"
-                                    type="phone"
-                                    name="phone" />
-                                </div>
-
-                                <div class="w-full flex flex-col gap-1">
-                                    <label
-                                    class="text-sm font-medium"
-                                    for="contact_type">
-                                        Por onde entrou em contato:
-                                    </label>
-
-                                    <select
-                                    class="input-field"
-                                    name="contact_type"
-                                    id="contact_type">
-                                        <option value="0">Selecione</option>
-                                        <option value="Whatsapp">Whatsapp</option>
-                                        <option value="Recomendação">Recomendação</option>
-                                    </select>
-                                </div>
-
-                                <div class="w-full flex justify-center">
-                                    <button
-                                    class="shadow-lg rounded-lg text-sm font-bold text-center text-white bg-purple-400 hover:bg-purple-500 py-2 px-4"
-                                    type="submit">
-                                        Criar
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        <livewire:form-create-customer />
                     </div>
                 </div>
             </div>

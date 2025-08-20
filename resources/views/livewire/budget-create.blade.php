@@ -29,7 +29,7 @@
                 @endif
 
                 <div class="mt-4">
-                    <form action="POST" wire:submit="save">
+                    <form wire:submit="save">
                         @if($stepCurrent == 1)
                             <div class="flex flex-wrap gap-4">
 
@@ -146,7 +146,7 @@
 
                                 @if($value != '')
                                     <div class="w-full">
-                                        <livewire:form.select-field label="Serviço" name="service_id" :options="$this->getServices()" value="{{ isset($service) ? $service->id : '' }}" event="setService" />
+                                        <livewire:form.select-field label="Tipo de serviço" name="service_id" :options="$this->getTypeServices()" value="{{ isset($typeService) ? $typeService->id : '' }}" event="setTypeService" />
                                     </div>
                                 @endif
                             </div>
@@ -214,7 +214,7 @@
 
                                 <div class="w-full">
                                     <p class="text-sm">
-                                        <strong>Tipo do serviço: </strong> {{ $service->name }}
+                                        <strong>Tipo do serviço: </strong> {{ $typeService->name }}
                                     </p>
 
                                     <p class="text-sm">

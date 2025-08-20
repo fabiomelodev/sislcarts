@@ -5,8 +5,8 @@ namespace App\Livewire;
 use App\Models\Budget;
 use App\Models\BudgetProduct;
 use App\Models\Customer;
-use App\Models\Service;
 use App\Models\Product;
+use App\Models\TypeService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -37,7 +37,7 @@ class BudgetCreate extends Component
 
     public string $value = '';
 
-    public Service $service;
+    public TypeService $typeService;
 
     public $products = [];
 
@@ -47,15 +47,15 @@ class BudgetCreate extends Component
         'setCustomer',
         'setContactTypes',
         'setBudgetType',
-        'setService',
+        'setTypeService',
     ];
 
     protected $messages = [
-        'phone.required'        => 'O Telefone é obrigatório.',
-        'name.required'         => 'O nome é obrigatório.',
-        'contactType.required'  => 'A tipo de contato é obrigatório.',
-        'budget_type.required'  => 'A tipo de orçamento é obrigatório.',
-        'service_id.required'   => 'A tipo de serviço é obrigatório.',
+        'phone.required'           => 'O Telefone é obrigatório.',
+        'name.required'            => 'O nome é obrigatório.',
+        'contactType.required'     => 'O tipo de contato é obrigatório.',
+        'budget_type.required'     => 'O tipo de orçamento é obrigatório.',
+        'type_service_id.required' => 'O tipo de serviço é obrigatório.',
     ];
 
     public function showFields($buttonType)
@@ -103,15 +103,15 @@ class BudgetCreate extends Component
         ];
     }
 
-    #[On('setService')]
-    public function setService($serviceId)
+    #[On('setTypeService')]
+    public function setTypeService($typeServiceId)
     {
-        $this->service = Service::where('user_id', Auth::user()->id)->find($serviceId);
+        $this->typeService = TypeService::where('user_id', Auth::user()->id)->find($typeServiceId);
     }
 
-    public function getServices(): array
+    public function getTypeServices(): array
     {
-        return Service::actives()
+        return TypeService::actives()
             ->where('user_id', Auth::user()->id)
             ->pluck('name', 'id')
             ->toArray();
@@ -180,7 +180,7 @@ class BudgetCreate extends Component
         }
 
         if ($this->showCreateNewCustomers) {
-            if (Customer::where('phone', $this->phone)->exists()) {
+            if (Customer::where('name', $this->name)->where('phone', $this->phone)->exists()) {
                 $this->customer = Customer::where('phone', $this->phone)->first();
             } else {
                 $this->customer = Customer::create([
@@ -201,7 +201,7 @@ class BudgetCreate extends Component
     {
         if (
             $this->budgetType != ''
-            && isset($this->service)
+            && isset($this->typeService)
             && $this->value != ''
         ) {
             $this->addBudgetValue($this->value);
@@ -248,11 +248,11 @@ class BudgetCreate extends Component
     public function save()
     {
         $budget = Budget::create([
-            'budget_type'  => $this->budgetType,
-            'value'        => $this->value,
-            'service_id'   => $this->service->id,
-            'customer_id'  => $this->customer->id,
-            'user_id'      => Auth::user()->id
+            'budget_type'     => $this->budgetType,
+            'value'           => $this->value,
+            'type_service_id' => $this->typeService->id,
+            'customer_id'     => $this->customer->id,
+            'user_id'         => Auth::user()->id
         ]);
 
         foreach ($this->products as $product) {
@@ -281,7 +281,7 @@ class BudgetCreate extends Component
             if ($this->budgetType == 'Valor fechado') {
                 $rules = [
                     'budget_type'  => 'required',
-                    'service'      => 'required',
+                    'type_service' => 'required',
                     'value'        => 'required'
                 ];
             }
@@ -289,7 +289,7 @@ class BudgetCreate extends Component
             if ($this->budgetType == 'Por hora') {
                 $rules = [
                     'budget_type'  => 'required',
-                    'service'      => 'required',
+                    'type_service' => 'required',
                 ];
             }
         }

@@ -34,7 +34,6 @@ class Table extends Component
         return [];
     }
 
-
     public function updatedTableQuery()
     {
         $this->collections = static::$model::orderBy($this->orderColumn, $this->order)->hasUser()->get();

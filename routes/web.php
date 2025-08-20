@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ProductFeatureController;
-use App\Http\Controllers\ProductTypeController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TypeProductController;
+use App\Http\Controllers\TypeServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,82 +18,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard');
-    })->name('dashboard');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('login', [AuthController::class, 'index'])->name('login.index');
+Route::get('/dashboard', function () {
+    return view('pages.dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/login', [AuthController::class, 'auth'])->name('login.auth');
+Route::get('budget')->name('budget.index');
 
-Route::get('/registrar', [AuthController::class, 'create'])->name('login.create');
+Route::get('service')->name('service.index');
 
-Route::post('/registrar', [AuthController::class, 'register'])->name('login.register');
+Route::get('product-feature')->name('product-feature.index');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-Route::get('orcamentos', [BudgetController::class, 'index'])->name('budget.index');
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('/clientes', 'index')->name('customer.index');
+        Route::get('/clientes/criar', 'create')->name('customer.create');
+        Route::get('/clientes/{customer:id}/editar', 'edit')->name('customer.edit');
+    });
 
-Route::get('orcamento/{budget:id}/editar', [BudgetController::class, 'edit'])->name('budget.edit');
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/produtos', 'index')->name('product.index');
+        Route::get('/produtos/criar', 'create')->name('product.create');
+        Route::get('/produtos/{product:id}/editar', 'edit')->name('product.edit');
+    });
 
-Route::put('orcamento/{budget:id}/atualizar', [BudgetController::class, 'update'])->name('budget.update');
+    Route::controller(TypeProductController::class)->group(function () {
+        Route::get('/tipos-produtos', 'index')->name('type-product.index');
+        Route::get('/tipos-produtos/criar', 'create')->name('type-product.create');
+        Route::get('/tipos-produtos/{typeProduct:id}/editar', 'edit')->name('type-product.edit');
+    });
 
-Route::get('orcamento/{budget:id}/deletar', [BudgetController::class, 'destroy'])->name('budget.destroy');
+    Route::controller(TypeServiceController::class)->group(function () {
+        Route::get('/tipos-servicos', 'index')->name('type-service.index');
+        Route::get('/tipos-servicos/criar', 'create')->name('type-service.create');
+        Route::get('/tipos-servicos/{typeService:id}/editar', 'edit')->name('type-service.edit');
+    });
+});
 
-Route::get('/orcamento/criar', function () {
-    return view('pages.budget.create');
-})->name('budget.create');
-
-Route::get('clientes', [CustomerController::class, 'index'])->name('customer.index');
-
-Route::get('cliente/criar', [CustomerController::class, 'create'])->name('customer.create');
-
-Route::post('cliente/criar', [CustomerController::class, 'store'])->name('customer.store');
-
-Route::get('cliente/{customer:id}/editar', [CustomerController::class, 'edit'])->name('customer.edit');
-
-Route::put('cliente/{customer:id}/atualizar', [CustomerController::class, 'update'])->name('customer.update');
-
-Route::get('cliente/{customer:id}/deletar', [CustomerController::class, 'destroy'])->name('customer.destroy');
-
-Route::get('servicos', [ServiceController::class, 'index'])->name('service.index');
-
-Route::get('servico/criar', [ServiceController::class, 'create'])->name('service.create');
-
-Route::post('servico/criar', [ServiceController::class, 'store'])->name('service.store');
-
-Route::get('servico/{service:id}/editar', [ServiceController::class, 'edit'])->name('service.edit');
-
-Route::put('servico/{service:id}/atualizar', [ServiceController::class, 'update'])->name('service.update');
-
-Route::get('produtos', [ProductController::class, 'index'])->name('product.index');
-
-Route::get('produto/criar', [ProductController::class, 'create'])->name('product.create');
-
-Route::post('produto/criar', [ProductController::class, 'store'])->name('product.store');
-
-Route::get('produto/{product:id}/editar', [ProductController::class, 'edit'])->name('product.edit');
-
-Route::put('product/{product:id}/atualizar', [ProductController::class, 'update'])->name('product.update');
-
-Route::get('tipos-produtos', [ProductTypeController::class, 'index'])->name('product-type.index');
-
-Route::get('tipo-produto/criar', [ProductTypeController::class, 'create'])->name('product-type.create');
-
-Route::post('tipo-produto/criar', [ProductTypeController::class, 'store'])->name('product-type.store');
-
-Route::get('tipo-produto/{productType:id}/editar', [ProductTypeController::class, 'edit'])->name('product-type.edit');
-
-Route::put('tipo-produto/{productType:id}/atualizar', [ProductTypeController::class, 'update'])->name('product-type.update');
-
-Route::get('produtos-caracteristicas', [ProductFeatureController::class, 'index'])->name('product-feature.index');
-
-Route::get('produto-caracteristica/criar', [ProductFeatureController::class, 'create'])->name('product-feature.create');
-
-Route::post('produto-caracteristica/criar', [ProductFeatureController::class, 'store'])->name('product-feature.store');
-
-Route::get('produto-caracteristica/{productType:id}/editar', [ProductFeatureController::class, 'edit'])->name('product-feature.edit');
-
-Route::put('produto-caracteristica/{productType:id}/atualizar', [ProductFeatureController::class, 'update'])->name('product-feature.update');
+require __DIR__ . '/auth.php';

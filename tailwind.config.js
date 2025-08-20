@@ -1,18 +1,25 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const plugin = require("tailwindcss/plugin");
+import defaultTheme from "tailwindcss/defaultTheme";
+import forms from "@tailwindcss/forms";
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
     content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
     ],
+
     theme: {
         container: {
             center: true,
             padding: "1rem",
         },
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
-    plugins: [require("@tailwindcss/line-clamp")],
+
+    plugins: [forms],
 };

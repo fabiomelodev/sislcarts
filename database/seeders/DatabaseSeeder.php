@@ -21,10 +21,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
-            ServiceSeeder::class,
+            TypeServiceSeeder::class,
+            TypeProductSeeder::class,
+            ProductSeeder::class,
             CustomerSeeder::class,
-            BudgetSeeder::class,
-            ProductSeeder::class
+            // ServiceSeeder::class,
+            // BudgetSeeder::class,
         ]);
     }
 }

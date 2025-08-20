@@ -46,7 +46,7 @@
                             </td>
 
                             <td>
-                                {{ $collection->service->name }}
+                                {{ $collection->typeService->name }}
                             </td>
 
                             <td>

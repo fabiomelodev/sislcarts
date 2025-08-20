@@ -45,6 +45,10 @@
                             </td>
 
                             <td>
+                                <x-table.status-column :name="$collection->status" />
+                            </td>
+
+                            <td>
                                 {{ $collection->phone }}
                             </td>
 

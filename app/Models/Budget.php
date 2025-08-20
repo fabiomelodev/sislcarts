@@ -36,9 +36,9 @@ class Budget extends Model
         return $this->hasMany(Product::class, 'budget_id', 'product_id', 'budget_products');
     }
 
-    public function service(): BelongsTo
+    public function typeService(): BelongsTo
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(TypeService::class);
     }
 
     public function user(): BelongsTo
