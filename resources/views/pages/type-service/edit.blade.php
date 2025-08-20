@@ -1,5 +1,5 @@
 <x-layout.base>
-    <x-slot name="title">Editar | Tipos de Serviços</x-slot>
+    <x-slot name="title">Editar | Tipos de serviços</x-slot>
 
     @if(session('success'))
         <x-notifications.success message="{{ session('success') }}"/>
@@ -18,7 +18,7 @@
                             <h1
                             class="text-2xl font-bold"
                             style="line-height:100%">
-                                Tipo de Serviço | Editar
+                                Tipo de serviço | Editar
                             </h1>
                         </div>
 

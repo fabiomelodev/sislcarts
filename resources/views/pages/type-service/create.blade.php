@@ -1,5 +1,5 @@
 <x-layout.base>
-    <x-slot name="title">Serviços</x-slot>
+    <x-slot name="title">Tipo de serviço</x-slot>
 
     <section class="pt-14">
 
@@ -14,7 +14,7 @@
                             <h1
                             class="text-2xl font-bold"
                             style="line-height:100%">
-                                Tipo de Serviço | Criar novo
+                                Tipo de serviço | Criar novo
                             </h1>
                         </div>
 
